@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlogHub - Advanced Blog Platform</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="assets/logo.png" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <div class="logo">BlogHub</div>
+        <div class="nav-links">
+          <div id="authNav" class="hidden">
+            <span id="userGreeting"></span>
+            <button class="btn btn-primary" onclick="showCreatePost()">
+              Create Post
+            </button>
+            <button class="btn btn-secondary" onclick="logout()">Logout</button>
+          </div>
+          <div id="guestNav">
+            <button class="btn btn-secondary" onclick="showLogin()">
+              Login
+            </button>
+            <button class="btn btn-primary" onclick="showSignup()">
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+      <!-- Welcome Section -->
+      <section id="welcomeSection" class="welcome fade-in">
+        <h1>Welcome to BlogHub</h1>
+        <p>Share your thoughts, stories, and ideas with the world</p>
+        <div>
+          <button class="btn btn-primary" onclick="showSignup()">
+            Get Started
+          </button>
+          <button class="btn btn-secondary" onclick="showLogin()">
+            Sign In
+          </button>
+        </div>
+      </section>
+
+      <!-- Dashboard -->
+      <section id="dashboard" class="hidden">
+        <div class="dashboard-stats">
+          <div class="stat-card">
+            <div class="stat-number" id="totalPosts">0</div>
+            <div class="stat-label">Total Posts</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="myPosts">0</div>
+            <div class="stat-label">My Posts</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="totalUsers">0</div>
+            <div class="stat-label">Total Users</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Blog Posts -->
+      <section id="postsSection">
+        <div class="posts-grid" id="postsGrid">
+          <!-- Posts will be dynamically inserted here -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <h2 style="margin-bottom: 1.5rem; text-align: center">Welcome Back</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" id="loginEmail" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-input"
+              id="loginPassword"
+              required
+            />
+          </div>
+          <div style="display: flex; gap: 1rem; justify-content: flex-end">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal('loginModal')"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+      <div class="modal-content">
+        <h2 style="margin-bottom: 1.5rem; text-align: center">Join BlogHub</h2>
+        <form id="signupForm">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-input" id="signupName" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" id="signupEmail" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-input"
+              id="signupPassword"
+              required
+              minlength="6"
+            />
+          </div>
+          <div style="display: flex; gap: 1rem; justify-content: flex-end">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal('signupModal')"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Create/Edit Post Modal -->
+    <div id="postModal" class="modal">
+      <div class="modal-content">
+        <h2
+          id="postModalTitle"
+          style="margin-bottom: 1.5rem; text-align: center"
+        >
+          Create New Post
+        </h2>
+        <form id="postForm">
+          <div class="form-group">
+            <label class="form-label">Title</label>
+            <input type="text" class="form-input" id="postTitle" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Content</label>
+            <textarea
+              class="form-textarea"
+              id="postContent"
+              required
+              rows="8"
+              placeholder="Write your blog post content here..."
+            ></textarea>
+          </div>
+          <div style="display: flex; gap: 1rem; justify-content: flex-end">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal('postModal')"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" id="postSubmitBtn">
+              Create Post
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
